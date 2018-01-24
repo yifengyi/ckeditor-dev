@@ -6,6 +6,7 @@
 New Features:
 
 * [#1761](https://github.com/ckeditor/ckeditor-dev/issues/1761): [Autolink](https://ckeditor.com/cke4/addon/autolink) plugin supports email links.
+* [#1493](https://github.com/ckeditor/ckeditor-dev/issues/1493): [Upload Image](https://ckeditor.com/cke4/addon/uploadimage) selection is preserved after images upload.
 
 Fixed Issues:
 
@@ -16,6 +17,7 @@ Fixed Issues:
 * [#1776](https://github.com/ckeditor/ckeditor-dev/issues/1776): [Image Base](https://ckeditor.com/cke4/addon/imagebase) empty caption placeholder is not hidden when blurred.
 * [#1592](https://github.com/ckeditor/ckeditor-dev/issues/1592): [Image Base](https://ckeditor.com/cke4/addon/imagebase) caption is not visible after paste.
 * [#620](https://github.com/ckeditor/ckeditor-dev/issues/620): Fixed: [`forcePasteAsPlainText`](https://docs.ckeditor.com/ckeditor4/latest/api/CKEDITOR_config.html#cfg-forcePasteAsPlainText) will be respected when internal and cross-editor pasting happens.
+* [#1217](https://github.com/ckeditor/ckeditor-dev/issues/1217): [Chrome] Fixed: [Upload Image](https://ckeditor.com/cke4/addon/uploadimage) exception thrown when pasting multiple images into an empty editable.
 
 API Changes:
 
