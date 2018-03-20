@@ -26,6 +26,7 @@
 
 
 <script>
+	// Inline editor with widget crashes on IE8 #1641 & #1821
 	if ( !( CKEDITOR.env.ie && CKEDITOR.env.version > 9 ) ) {
 		bender.ignore();
 	}
