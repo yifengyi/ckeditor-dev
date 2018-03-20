@@ -26,6 +26,10 @@
 
 
 <script>
+	if ( !( CKEDITOR.env.ie && CKEDITOR.env.version > 9 ) ) {
+		bender.ignore();
+	}
+
 	CKEDITOR.replace( 'classic' );
 
 	CKEDITOR.inline( 'inline' );
