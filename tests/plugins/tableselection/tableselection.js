@@ -147,6 +147,7 @@
 			} );
 		},
 
+		// (#1489)
 		'test random keys are not removing readonly selection': function( editor ) {
 			var selection = editor.getSelection(),
 				editable = editor.editable(),
@@ -164,6 +165,8 @@
 
 			editable.fire( 'keypress', new CKEDITOR.dom.event( { keyCode: 65, charCode: 65 } ) ); // `a`
 			editable.fire( 'keypress', new CKEDITOR.dom.event( { keyCode: 93, charCode: 93 } ) ); // `t`
+
+			editor.setReadOnly( false );
 
 			assert.areSame( bender.tools.compatHtml( table ), editor.getData(), 'Editor data' );
 		}
