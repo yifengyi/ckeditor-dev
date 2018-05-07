@@ -6,6 +6,7 @@
 New Features:
 
 * [#1761](https://github.com/ckeditor/ckeditor-dev/issues/1761): [Autolink](https://ckeditor.com/cke4/addon/autolink) plugin supports email links.
+* [#1526](https://github.com/ckeditor/ckeditor-dev/pull/1526): Added possibility to attach balloon panel to selection instead of element.
 
 Fixed Issues:
 
