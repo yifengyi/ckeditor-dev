@@ -1147,7 +1147,7 @@
 						if ( ev.data.$.button == 2 ) {
 							var target = ev.data.getTarget();
 
-							if ( !target.getOuterHtml().replace( emptyParagraphRegexp, '' ) ) {
+							if ( !target.getAscendant( 'table' ) && !target.getOuterHtml().replace( emptyParagraphRegexp, '' ) ) {
 								var range = editor.createRange();
 								range.moveToElementEditStart( target );
 								range.select( true );
