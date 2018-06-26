@@ -10,6 +10,7 @@
 
 	CKEDITOR.plugins.add( 'emoji', {
 		requires: 'autocomplete,textmatch,ajax',
+		lang: 'en', // %REMOVE_LINE_CORE%
 		icons: 'emojipanel',
 		beforeInit: function() {
 			if ( CKEDITOR.env.ie && CKEDITOR.env.version < 11 ) {
@@ -187,9 +188,9 @@
 			function getSearchTitle( query ) {
 				var output = [];
 				if ( query === '' ) {
-					output.push( lang ? lang.commonEmojiTitle : 'Common emoji:' );
+					output.push( lang.defaultEmojiTitle );
 				} else {
-					output.push( lang ? lang.searchResultTitle : 'Search results:' );
+					output.push( lang.searchResultTitle );
 				}
 				return output.join( '' );
 			}
@@ -197,7 +198,7 @@
 			function getEmojiBlock() {
 				var output = [];
 				// Search Box:
-				output.push( '<input placeholder="', lang ? lang.searchPlaceholder : 'Search emoji...' ,'" type="search" oninput="CKEDITOR.tools.callFunction(', filterFn ,',this)">' );
+				output.push( '<input placeholder="', lang.searchPlaceholder, '" type="search" oninput="CKEDITOR.tools.callFunction(', filterFn ,',this)">' );
 				// Result box:
 
 				output.push( '<h2>', getSearchTitle( '' ), '</h2>' );
