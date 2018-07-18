@@ -3034,6 +3034,12 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 		CKEDITOR.VALIDATE_OR = 1;
 		CKEDITOR.VALIDATE_AND = 2;
 
+		/**
+		 * The namespace with dialog helper validation functions.
+		 *
+		 * @property {CKEDITOR.dialog.validate}
+		 * @member CKEDITOR.dialog
+		 */
 		CKEDITOR.dialog.validate = {
 			functions: function() {
 				var args = arguments;
@@ -3078,6 +3084,18 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				};
 			},
 
+			/**
+			 * Checks if a dialog UI element value meets the regex condition.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.regex( 'error!', /^\d*$/ )( '123' ) // true
+			 * CKEDITOR.dialog.validation.regex( 'error!' )( '123.321' ) // error!
+			 * ```
+			 *
+			 * @param {RegExp} regex
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			regex: function( regex, msg ) {
 				/*
 				 * Can be greatly shortened by deriving from functions validator if code size
@@ -3089,30 +3107,100 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				};
 			},
 
+			/**
+			 * Checks if a dialog UI element value is not an empty string.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.notEmpty( 'error!' )( 'test' ) // true
+			 * CKEDITOR.dialog.validation.notEmpty( 'error!' )( '  ' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			notEmpty: function( msg ) {
 				return this.regex( notEmptyRegex, msg );
 			},
 
+			/**
+			 * Checks if a dialog UI element value is an Integer.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.integer( 'error!' )( '123' ) // true
+			 * CKEDITOR.dialog.validation.integer( 'error!' )( '123.321' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			integer: function( msg ) {
 				return this.regex( integerRegex, msg );
 			},
 
+			/**
+			 * Checks if a dialog UI element value is an Number.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.number( 'error!' )( '123' ) // true
+			 * CKEDITOR.dialog.validation.number( 'error!' )( 'test' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			'number': function( msg ) {
 				return this.regex( numberRegex, msg );
 			},
 
+			/**
+			 * Checks if a dialog UI element value is a correct CSS length value.
+			 *
+			 * It allows `px`, `em`, `ex`, `in`, `cm`, `mm`, `pt`, `pc` units.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.cssLength( 'error!' )( '10pt' ) // true
+			 * CKEDITOR.dialog.validation.cssLength( 'error!' )( 'solid' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			'cssLength': function( msg ) {
 				return this.functions( function( val ) {
 					return cssLengthRegex.test( CKEDITOR.tools.trim( val ) );
 				}, msg );
 			},
 
+			/**
+			 * Checks if a dialog UI element value is a correct HTML length value.
+			 *
+			 * It allows `px` units.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.htmlLength( 'error!' )( '10px' ) // true
+			 * CKEDITOR.dialog.validation.htmlLength( 'error!' )( 'solid' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			'htmlLength': function( msg ) {
 				return this.functions( function( val ) {
 					return htmlLengthRegex.test( CKEDITOR.tools.trim( val ) );
 				}, msg );
 			},
 
+			/**
+			 * Checks if a dialog UI element value is a correct CSS inline style.
+			 *
+			 * ```javascript
+			 * CKEDITOR.dialog.validation.htmlLength( 'error!' )( 'height: 10px; width: 20px;' ) // true
+			 * CKEDITOR.dialog.validation.htmlLength( 'error!' )( 'test' ) // error!
+			 * ```
+			 *
+			 * @param {String} msg Validator error message.
+			 * @returns {Function}
+			 */
 			'inlineStyle': function( msg ) {
 				return this.functions( function( val ) {
 					return inlineStyleRegex.test( CKEDITOR.tools.trim( val ) );
